@@ -1,0 +1,57 @@
+$total_cols : nth(nth($breakpoints, length($breakpoints)), 2);
+
+* {
+	box-sizing: border-box;
+}
+
+@function parseInt($n) {
+	@return $n / ($n * 0 + 1);
+}
+
+@mixin container {
+	display: flex;
+	js-display: flex; // for flexibility polyfill
+	flex-flow: row wrap;
+	justify-content: space-between; // NO MORE OMEGAS!
+	margin: auto;
+
+	$break : nth($breakpoints, length($breakpoints));
+	$break : nth($break, 2) * $grid-column-width;
+
+	@if $grid-type == magic {
+		max-width: $break;
+	} @else if $grid-type == fluid {
+		max-width: 100%;
+	} @else if $grid-type == static {
+		@for $i from 1 through length($breakpoints) {
+			$break : nth($breakpoints, $i);
+			$total_cols : nth($break, 2);
+			@media only screen and (min-width: $total_cols * parseInt($grid-column-width) * $base-font-size) {
+				max-width: $total_cols * $grid-column-width;
+			}
+		}
+	}
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@mixin breakpoint ($n) {
+	@for $i from 1 through length($breakpoints) {
+		$break : nth($breakpoints, $i);
+		@if nth($break, 1) == $n {
+			$total_cols : nth($break, 2) !global;
+		}
+	}
+
+	@media only screen and (min-width: $total_cols * parseInt($grid-column-width) * $base-font-size) {
+		@content;
+	}
+}
+
+@mixin cols ($cols, $reference:$total_cols) {
+	flex-flow: row wrap;
+	padding-left: $grid-padding;
+	padding-right: $grid-padding;
+	width: calc( (#{$cols} / #{$reference} * 100%) - #{$grid-gutter} + (#{$cols} / #{$reference} * #{$grid-gutter}));
+}

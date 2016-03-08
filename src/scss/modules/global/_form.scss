@@ -1,0 +1,29 @@
+form {
+	margin: $base-line-height 0;
+	
+	div {
+		label {
+			display: inline-block;
+			line-height: $base-line-height;
+		}
+
+		input {
+			border: solid 1px $color-text;
+			display: inline-block;
+			height: $base-line-height;
+			line-height: $base-line-height;
+			margin: 0;
+			padding: 0 .25rem;
+			vertical-align: top;
+		}
+
+		textarea {
+			border: solid 1px $color-text;
+			display: inline-block;
+			height: 5 * $base-line-height;
+			line-height: $base-line-height;
+			padding: 0 .25rem;
+			vertical-align:top;
+		}
+	}
+}

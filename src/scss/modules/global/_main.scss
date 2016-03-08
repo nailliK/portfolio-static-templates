@@ -1,0 +1,32 @@
+[role="document"] {
+	@include container;
+	
+	article, aside {
+		>h1, >h2, >h3, >h4 {
+			&:first-child {
+				margin-top:0;
+			}
+		}
+	}
+	
+	article {
+		@include breakpoint(tablet) {
+			@include cols(5);
+		}
+		
+		ul {
+			@include container;
+			
+			li {
+				@include breakpoint(tablet) {
+					@include cols(1,2);
+				}
+			}
+		}
+	}
+	aside {
+		@include breakpoint(tablet) {
+			@include cols(3);
+		}
+	}
+}

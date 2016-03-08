@@ -1,0 +1,53 @@
+{
+  "name": "Project-Starter",
+  "author": "Killian Grant",
+  "version": "2.0.0",
+  "description": "Front-End Project Starter",
+  "private": true,
+  "config": {
+    "buildDir": "public",
+    "srcDir": "src"
+  },
+  "dependencies": {
+    "autoprefixer": "latest",
+    "browserify": "latest",
+    "npm-scripts-watcher": "latest",
+    "partialify": "latest",
+    "uglify-js": "latest"
+  },
+  "devDependencies": {
+    "flexibility": "latest",
+    "jquery": "latest",
+    "lodash": "latest",
+    "page": "latest",
+    "vue": "latest",
+    "vue-resource": "latest"
+  },
+  "watch": {
+    "src/fonts/**/*": [
+      "fonts"
+    ],
+    "src/img/**/*": [
+      "images"
+    ],
+    "{src/js/**/*.js,src/templates/**/*.html}": [
+      "javascript"
+    ],
+    "src/scss/**/*.scss": [
+      "scss"
+    ],
+    "src/svg/**/*": [
+      "svg"
+    ]
+  },
+  "scripts": {
+    "directories": "[ -d $npm_package_config_buildDir/css ] || mkdir -p $npm_package_config_buildDir/css && [ -d $npm_package_config_buildDir/fonts ] || mkdir -p $npm_package_config_buildDir/fonts && [ -d $npm_package_config_buildDir/img ] || mkdir -p $npm_package_config_buildDir/img && [ -d $npm_package_config_buildDir/js ] || mkdir -p $npm_package_config_buildDir/js && [ -d $npm_package_config_buildDir/svg ] || mkdir -p $npm_package_config_buildDir/svg",
+    "fonts": "cp -rf $npm_package_config_srcDir/fonts $npm_package_config_buildDir",
+    "images": "cp -rf $npm_package_config_srcDir/img $npm_package_config_buildDir",
+    "javascript": "browserify -t partialify $npm_package_config_srcDir/js/main.js | uglifyjs > $npm_package_config_buildDir/js/main.js",
+    "scss": "compass clean && compass compile --sass-dir $npm_package_config_srcDir/scss",
+    "svg": "cp -rf $npm_package_config_srcDir/svg $npm_package_config_buildDir",
+    "build": "npm run directories && npm run javascript && npm run fonts && npm run images && npm run scss && npm run svg",
+    "watch": "npm-scripts-watcher"
+  }
+}

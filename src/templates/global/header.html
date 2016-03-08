@@ -1,0 +1,12 @@
+<header role="banner">
+	<div>
+		Project Starter
+	</div>
+	<input type="checkbox" id="nav-toggle">
+	<label for="nav-toggle">HAMBURGER</label>
+	<nav>
+	    <div v-for="link in links">
+			<a href="{{ link.href }}" title="{{ link.title }}">{{ link.text }}</a>
+		</div>
+	</nav>
+</header>

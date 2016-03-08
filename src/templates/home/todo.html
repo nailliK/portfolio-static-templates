@@ -1,0 +1,13 @@
+<main role="document">
+	<h1>To Dos</h1>
+	<div>
+		<label for="add_todo">Add ToDo:</label>
+		<input id="add_todo" v-model="newTodo" v-on:keyup.enter="addTodo">
+	</div>
+	<ul>
+		<li v-for="todo in todos" track-by="$index">
+			<input id="{{todo.id}}" v-model="todo.text" v-on:change="updateTodo(todo)">
+			<button v-on:click="removeTodo($index)">X</button>
+		</li>
+	</ul>
+</main>

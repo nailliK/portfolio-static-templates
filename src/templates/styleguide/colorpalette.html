@@ -1,0 +1,7 @@
+<ul id="sg_palette">
+  <li v-for="(name, value) in colors">
+    <div class="sg_palette_swatch" v-bind:style="{backgroundColor: value}"></div>
+    <div class="sg_palette_name">{{name}}</div>
+    <div class="sg_palette_value">{{value}}</div>
+  </li>
+</ul>
