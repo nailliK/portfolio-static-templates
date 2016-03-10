@@ -16,7 +16,7 @@ cache/
 simple-backup/
 build/*
 public/*
-!public/index.php
+!public/*.html
 !public/.htaccess
 vendor/*
 !vendor/autoload.php
